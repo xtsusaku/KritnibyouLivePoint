@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <table class="table" id="listId"></table>
+    <script>
+          function reloadLP() {
+            fetch(
+              "https://gist.githubusercontent.com/xtsusaku/8d6c052c0ff1d3895d1dd6217bd6eac1/raw/kb_livepoint.json"
+            )
+              .then((data) => data.json())
+              .then((data) => {
+
+                document.getElementById("listId").innerHTML = "";
+                data.forEach((v, i) => {
+                  const line = `<tr><th>${v[0]}</th><th>${v[1]}</th></tr>`;
+                  document.getElementById("listId").innerHTML += line;
+                });
+              });
+            setTimeout(reloadLP, 1000);
+          }
+          reloadLP();
+    </script>
+  </body>
+</html>
